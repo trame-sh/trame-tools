@@ -16,4 +16,6 @@ export DENV_IMAGE="${DENV_IMAGE:-${PROJECT}-denv}"
 docker compose -p "$COMPOSE_PROJECT" -f "$COMPOSE_FILE" up -d --wait 2>/dev/null
 
 # Exec MCP server — replaces this shell so stdio flows to Claude Code
-exec docker compose -p "$COMPOSE_PROJECT" -f "$COMPOSE_FILE" exec -T devenv mcp-server
+# --user is needed because `docker compose exec` bypasses the entrypoint,
+# which would otherwise drop privileges via gosu.
+exec docker compose -p "$COMPOSE_PROJECT" -f "$COMPOSE_FILE" exec -T --user "$LOCAL_UID:$LOCAL_GID" devenv mcp-server
