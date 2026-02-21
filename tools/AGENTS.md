@@ -1,0 +1,5 @@
+- specs of project, features and implementation plans are available on trame mcp tool
+- use the `shell_exec` MCP tool for all dev environment commands (tests, builds, migrations, etc.)
+- file operations are direct — read and write files on the host, no MCP needed
+- companion services (postgres) are accessible at their service names from inside the container
+- you are working in a git worktree. In case of worktree issues, run `git worktree repair` from the workspace root
