@@ -19,8 +19,10 @@ A dev environment base image with:
 
 Files that live in user projects and are updated via `denv/update.sh`:
 
+- **`update.sh`** — Self-updating script that pulls the latest tools from this repo
 - **`mcp.sh`** — MCP launcher that auto-starts the compose stack
 - **`AGENTS.md`** — Agent instructions for Claude Code
+- **`.claude/agents/teammate.md`** — Claude Code agent definition for parallel teammates
 
 ## Usage
 
