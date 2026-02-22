@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Wrapped in { } so bash reads the entire script before executing,
+# allowing the self-update below to safely overwrite this file.
+{
 set -euo pipefail
 
 REPO="trame-sh/trame-tools"
@@ -56,3 +59,4 @@ else
 
   echo "Updated to $REPO@$VERSION"
 fi
+}
