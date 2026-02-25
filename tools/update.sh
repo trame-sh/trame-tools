@@ -21,7 +21,7 @@ if [ "${1:-}" = "--check" ] || [ "${1:-}" = "-c" ]; then
       echo "Up to date ($CURRENT)"
     else
       echo "Update available: $CURRENT → $LATEST"
-      echo "Run \`denv/update.sh\` to update, then rebuild with \`docker build denv/ -t \$(basename \"\$PWD\")-denv --pull\`."
+      echo "Run \`denv/update.sh\` to update, then rebuild with \`denv/build-denv.sh\`."
     fi
   else
     echo "Version unknown (no .trame-tools-version file). Run \`denv/update.sh\` to install latest ($LATEST)."
@@ -49,7 +49,21 @@ else
   curl -fsSL "$BASE/mcp.sh" -o "$SCRIPT_DIR/mcp.sh"
   chmod +x "$SCRIPT_DIR/mcp.sh"
 
+  curl -fsSL "$BASE/agent.sh" -o "$SCRIPT_DIR/agent.sh"
+  chmod +x "$SCRIPT_DIR/agent.sh"
+
+  curl -fsSL "$BASE/agent-loop.sh" -o "$SCRIPT_DIR/agent-loop.sh"
+  chmod +x "$SCRIPT_DIR/agent-loop.sh"
+
+  curl -fsSL "$BASE/build-denv.sh" -o "$SCRIPT_DIR/build-denv.sh"
+  chmod +x "$SCRIPT_DIR/build-denv.sh"
+
   curl -fsSL "$BASE/AGENTS.md" -o "$SCRIPT_DIR/AGENTS.md"
+
+  # prompt.md is user-customizable — only download if missing
+  if [ ! -f "$SCRIPT_DIR/prompt.md" ]; then
+    curl -fsSL "$BASE/prompt.md" -o "$SCRIPT_DIR/prompt.md"
+  fi
 
   PROJECT_DIR="$SCRIPT_DIR/.."
   mkdir -p "$PROJECT_DIR/.claude/agents"
