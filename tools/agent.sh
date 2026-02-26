@@ -32,27 +32,11 @@ WORKER_NAME="${PROJECT}-worker-${WORKER_ID}"
 
 echo "Starting $WORKER_NAME ..."
 
-# --- Create worktree ---
-WORKTREE_DIR="$PROJECT_DIR/worktrees/worker-${WORKER_ID}"
-mkdir -p "$PROJECT_DIR/worktrees"
-git -C "$PROJECT_DIR" worktree add --relative-paths "$WORKTREE_DIR" -b "worker-${WORKER_ID}"
-
 # --- Cleanup on exit ---
 cleanup() {
   echo ""
   echo "Stopping $WORKER_NAME ..."
-  docker compose -p "$WORKER_NAME" -f "$WORKTREE_DIR/denv/docker-compose.worker.yml" down 2>/dev/null || true
-
-  # Remove worktree only if clean
-  if git -C "$WORKTREE_DIR" diff --quiet 2>/dev/null &&
-    git -C "$WORKTREE_DIR" diff --cached --quiet 2>/dev/null &&
-    [ -z "$(git -C "$WORKTREE_DIR" ls-files --others --exclude-standard 2>/dev/null)" ]; then
-    echo "Worktree is clean — removing $WORKTREE_DIR"
-    git -C "$PROJECT_DIR" worktree remove "$WORKTREE_DIR" 2>/dev/null || true
-    git -C "$PROJECT_DIR" branch -d "worker-${WORKER_ID}" 2>/dev/null || true
-  else
-    echo "Worktree has uncommitted changes — keeping $WORKTREE_DIR"
-  fi
+  docker compose -p "$WORKER_NAME" -f "$SCRIPT_DIR/docker-compose.worker.yml" down 2>/dev/null || true
 }
 trap cleanup EXIT
 
