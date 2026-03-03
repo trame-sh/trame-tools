@@ -15,12 +15,7 @@ Host (Claude Code)                   Docker container (devenv)
 - **shell commands** → use the `shell_exec` MCP tool (may appear as `mcp__devenv__shell_exec`) (runs inside the container at `/workspace`)
 - **file operations** → read and write directly on the host, do NOT use `shell_exec` for file I/O
 - **companion services** (postgres, redis, etc.) → accessible by service name from inside the container — see `denv/docker-compose.base.yml` for connection details
-- always work with a team. each teammate should claim an implementation plan from trame, and work in an isolated worktree
-- worktree should be created with --relative-paths in ./wortrees/<worktree name>
-- each teammate creates its own docker compose stack with `docker compose -p <worker name> up -d` so service ports don't collide between workers
-- use latest sonnet model for teammate
-- the team lead merges teammate branches back into main once their work is done
-- teammate stop their docker compose stack and delete their worktree when done
+- when working with team — spawn workers using the `teammate` agent, and merge their branches back into main once done
 
 ## Bootstrapping
 
