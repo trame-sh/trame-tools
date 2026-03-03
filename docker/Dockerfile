@@ -28,6 +28,11 @@ RUN cd /tmp \
     && make prefix=/usr install \
     && cd / && rm -rf /tmp/git-2.48.1
 
+# Claude Code CLI — native installer, symlinked into /usr/local/bin for all users
+RUN curl -fsSL https://claude.ai/install.sh | bash \
+    && cp /root/.local/bin/claude /usr/local/bin/claude \
+    && chmod +x /usr/local/bin/claude
+
 # MCP server — provides shell_exec tool for Claude Code on the host
 RUN npm install -g @modelcontextprotocol/sdk zod
 COPY mcp-server.mjs /usr/local/lib/mcp-server.mjs

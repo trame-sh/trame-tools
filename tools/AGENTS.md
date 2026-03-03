@@ -21,7 +21,7 @@ Host (Claude Code)                   Docker container (devenv)
 
 The `shell_exec` MCP tool is provided by the `devenv` MCP server (`denv/mcp.sh`), which auto-starts the Docker stack. If `shell_exec` is not available, bootstrap the environment yourself using Bash:
 
-1. **Build the image** (if missing) — `docker build denv/ -t <project>-denv`
+1. **Build the image** (if missing) — `denv/build-denv.sh`
 2. **Start the stack** — run `denv/mcp.sh` or:
    ```
    docker compose -p <project>-coord -f denv/docker-compose.coord.yml up -d --wait
