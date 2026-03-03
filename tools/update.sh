@@ -55,6 +55,9 @@ else
   curl -fsSL "$BASE/agent-loop.sh" -o "$SCRIPT_DIR/agent-loop.sh"
   chmod +x "$SCRIPT_DIR/agent-loop.sh"
 
+  curl -fsSL "$BASE/setup-worktree.sh" -o "$SCRIPT_DIR/setup-worktree.sh"
+  chmod +x "$SCRIPT_DIR/setup-worktree.sh"
+
   curl -fsSL "$BASE/build-denv.sh" -o "$SCRIPT_DIR/build-denv.sh"
   chmod +x "$SCRIPT_DIR/build-denv.sh"
 
