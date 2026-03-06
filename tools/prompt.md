@@ -20,4 +20,4 @@ IMPORTANT:
 - Author tests and run them
 - After changes pass tests, commit your work to the worktree branch
 - Update your implementation plan status on trame as you progress
-- When all tasks are complete, set the plan status to completed
+- When all tasks are complete, push your branch and submit your work with the submit_work tool
