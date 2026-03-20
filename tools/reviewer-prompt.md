@@ -1,4 +1,4 @@
-Study project specs.
+Study project specs for the **{{TRAME_PROJECT}}** project. Only review plans belonging to this project.
 
 Call `list_plans_to_review()` to find plans awaiting review.
 If there are no plans to review, create a file named `/tmp/.no-plan` and stop.

@@ -1,4 +1,4 @@
-Study project specs.
+Study project specs for the **{{TRAME_PROJECT}}** project. Only work on plans belonging to this project.
 
 If you don't have an implementation plan claimed on trame, claim one using `claim_plan`.
 If there are no plans available to claim, create a file named `/tmp/.no-plan` and stop.

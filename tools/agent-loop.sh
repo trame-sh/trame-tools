@@ -7,7 +7,8 @@ if [ "${ROLE:-agent}" = "reviewer" ]; then
   PROMPT_FILE="denv/reviewer-prompt.md"
 fi
 
-echo "[agent-loop] role=${ROLE:-agent} model=${MODEL:-sonnet} prompt=$PROMPT_FILE"
+TRAME_PROJECT="${TRAME_PROJECT:-$(basename /workspace)}"
+echo "[agent-loop] role=${ROLE:-agent} model=${MODEL:-sonnet} project=$TRAME_PROJECT prompt=$PROMPT_FILE"
 
 # Configure trame MCP with API key auth
 if [ -n "${TRAME_API_KEY:-}" ]; then
@@ -28,7 +29,8 @@ EOF
 fi
 
 while :; do
-  claude -p "$(cat "$PROMPT_FILE")" --dangerously-skip-permissions --model "${MODEL:-sonnet}" || {
+  PROMPT="$(sed "s/{{TRAME_PROJECT}}/$TRAME_PROJECT/g" "$PROMPT_FILE")"
+  claude -p "$PROMPT" --dangerously-skip-permissions --model "${MODEL:-sonnet}" || {
     echo "[agent-loop] claude exited $? — aborting"
     exit 1
   }

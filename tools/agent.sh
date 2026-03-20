@@ -78,6 +78,7 @@ export DENV_IMAGE="${DENV_IMAGE:-${PROJECT}-denv}"
 export MODEL
 export ROLE
 export TRAME_API_KEY
+export TRAME_PROJECT="${TRAME_PROJECT:-$PROJECT}"
 
 # --- Start compose stack ---
 docker compose -p "$INSTANCE_NAME" -f "$SCRIPT_DIR/docker-compose.worker.yml" up -d
