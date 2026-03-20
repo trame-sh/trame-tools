@@ -29,6 +29,18 @@ If the implementation is acceptable:
 5. Call `complete_plan(plan_id)`
 6. Stop
 
+## Self-improving loop
+
+After each review, reflect on what you found. If you spot a recurring mistake, a missing convention, or anything that workers (or you) should do differently next time, update `denv/AGENTS.md` with a clear, actionable rule so the lesson is captured for future sessions. Keep rules concise — one line per rule when possible.
+
+Examples of things worth adding:
+- Code patterns that were wrong and how to do them correctly
+- Missing test expectations (e.g. "always test edge case X")
+- Conventions the worker didn't follow that aren't documented yet
+- Architectural constraints that were violated
+
+Do NOT add rules that are already documented. Read `denv/AGENTS.md` first to avoid duplicates.
+
 IMPORTANT:
 - You are running inside the dev container — use Bash directly for shell commands
 - Work directly in /workspace (main branch) — do NOT use worktrees
